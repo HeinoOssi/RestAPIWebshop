@@ -150,7 +150,11 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
       operationId: get-items
       description: Gets items being sold
       requestBody:
@@ -205,8 +209,15 @@ paths:
       summary: Your GET endpoint
       tags: []
       responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
         '404':
-          description: Item not found
+          description: Not Found
       operationId: get-items-itemId
       description: Gets information of a single item
       requestBody:
@@ -243,15 +254,7 @@ components:
       title: User
       type: object
       description: ''
-      x-examples:
-        Alice Smith:
-          id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
+      x-examples: {}
       properties:
         id:
           type: integer
