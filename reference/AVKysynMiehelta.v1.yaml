@@ -157,13 +157,6 @@ paths:
           description: Not Found
       operationId: get-items
       description: Gets items being sold
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Items'
-            examples: {}
-        description: ''
     post:
       summary: ''
       operationId: post-items
