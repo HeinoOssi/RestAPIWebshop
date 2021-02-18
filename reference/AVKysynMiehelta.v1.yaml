@@ -220,11 +220,6 @@ paths:
           description: Not Found
       operationId: get-items-itemId
       description: Gets information of a single item
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Items'
     delete:
       summary: ''
       operationId: delete-items-itemId
