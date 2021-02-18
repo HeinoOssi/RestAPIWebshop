@@ -290,7 +290,7 @@ components:
       description: ''
       properties:
         id:
-          type: string
+          type: integer
         title:
           type: string
         description:
@@ -298,7 +298,7 @@ components:
         category:
           type: string
         askingPrice:
-          type: string
+          type: number
         dateOfPosting:
           type: string
         deliveryType:
@@ -307,11 +307,11 @@ components:
           type: object
           properties:
             sellerId:
-              type: string
+              type: integer
             address:
               type: string
             postalCode:
-              type: string
+              type: integer
             city:
               type: string
             country:
