@@ -1,0 +1,393 @@
+openapi: 3.0.0
+info:
+  title: AVKysynMieheltä
+  description: AV Kysyn mieheltä is a webshop
+  contact:
+    name: OssiH
+    email: heino@ruojasol.fi
+  version: "1.0"
+servers:
+- url: http://localhost:3000
+paths:
+  /users/{userId}:
+    get:
+      tags: []
+      summary: Get User Info by User ID
+      description: Retrieve the information of the user with the matching user ID.
+      operationId: get-users-userId
+      parameters:
+      - name: userId
+        in: path
+        description: Id of an existing user.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples: {}
+        "404":
+          description: User Not Found
+      x-swagger-router-controller: Default
+    put:
+      description: Update user
+      operationId: put-users-userId
+      parameters:
+      - name: userId
+        in: path
+        description: Id of an existing user.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+      x-swagger-router-controller: Default
+    delete:
+      description: Delete the user
+      operationId: delete-users-userId
+      parameters:
+      - name: userId
+        in: path
+        description: Id of an existing user.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+      x-swagger-router-controller: Default
+    patch:
+      summary: Update User Information
+      description: Update the infromation of an existing user.
+      operationId: patch-users-userId
+      parameters:
+      - name: userId
+        in: path
+        description: Id of an existing user.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: Patch user properties to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              Update First Name:
+                value:
+                  firstName: Rebecca
+              Update Email:
+                value:
+                  email: rebecca@gmail.com
+              Update Last Name & Date of Birth:
+                value:
+                  lastName: Baker
+                  dateOfBirth: 1985-10-02
+      responses:
+        "200":
+          description: User Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Updated User Rebecca Baker:
+                  value:
+                    id: 13
+                    firstName: Rebecca
+                    lastName: Baker
+                    email: rebecca@gmail.com
+                    dateOfBirth: 1985-10-02
+                    emailVerified: false
+                    createDate: 2019-08-24
+        "404":
+          description: User Not Found
+        "409":
+          description: Email Already Taken
+      x-swagger-router-controller: Default
+  /user:
+    post:
+      summary: Create New User
+      description: Create a new user.
+      operationId: post-user
+      requestBody:
+        description: Post the necessary fields for the API to create a new user.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/'
+            examples:
+              Create User Bob Fellow:
+                value:
+                  firstName: Bob
+                  lastName: Fellow
+                  email: bob.fellow@gmail.com
+                  dateOfBirth: 1996-08-24
+      responses:
+        "200":
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: 1996-08-24
+                    emailVerified: false
+                    createDate: 2020-11-18
+        "400":
+          description: Missing Required Information
+        "409":
+          description: Email Already Taken
+      x-swagger-router-controller: Default
+  /items:
+    get:
+      tags: []
+      summary: Your GET endpoint
+      description: Gets items being sold
+      operationId: get-items
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+      x-swagger-router-controller: Default
+    put:
+      operationId: put-items
+      responses:
+        "200":
+          description: OK
+      x-swagger-router-controller: Default
+    post:
+      description: Create a new item
+      operationId: post-items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+            examples: {}
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+              examples: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      x-swagger-router-controller: Default
+  /items/{itemId}:
+    get:
+      tags: []
+      summary: Your GET endpoint
+      description: Gets information of a single item
+      operationId: get-items-itemId
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+        "404":
+          description: Not Found
+      x-swagger-router-controller: Default
+    put:
+      operationId: put-items-itemId
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+      x-swagger-router-controller: Default
+    delete:
+      description: Delete single item
+      operationId: delete-items-itemId
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "202":
+          description: Accepted
+        "404":
+          description: Item not found
+      x-swagger-router-controller: Default
+    patch:
+      operationId: patch-items-itemId
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    User:
+      title: User
+      required:
+      - email
+      - emailVerified
+      - firstName
+      - id
+      - lastName
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: 1997-10-31
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          description: The date that the user was created.
+          format: date
+        userName:
+          type: string
+        password:
+          type: string
+      example:
+        firstName: firstName
+        lastName: lastName
+        emailVerified: true
+        password: password
+        dateOfBirth: 1997-10-31T00:00:00.000+0000
+        id: 0
+        userName: userName
+        email: ""
+        createDate: 2000-01-23
+      x-examples: {}
+    Items:
+      title: Items
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        askingPrice:
+          type: number
+        dateOfPosting:
+          type: string
+        deliveryType:
+          type: string
+        contactInformation:
+          $ref: '#/components/schemas/Items_contactInformation'
+      example:
+        contactInformation:
+          country: country
+          sellerId: 1
+          address: address
+          city: city
+          postalCode: 5
+        askingPrice: 6.027456183070403
+        deliveryType: deliveryType
+        description: description
+        id: 0
+        dateOfPosting: dateOfPosting
+        title: title
+        category: category
+    body:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          description: If a new email is given, the user's email verified property
+            will be set to false.
+        dateOfBirth:
+          type: string
+    inline_response_400:
+      type: object
+      properties:
+        errorReason:
+          type: string
+    Items_contactInformation:
+      type: object
+      properties:
+        sellerId:
+          type: integer
+        address:
+          type: string
+        postalCode:
+          type: integer
+        city:
+          type: string
+        country:
+          type: string
+      example:
+        country: country
+        sellerId: 1
+        address: address
+        city: city
+        postalCode: 5

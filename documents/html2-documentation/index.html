@@ -717,9 +717,10 @@
 };
             defs["Items"] = {
   "title" : "Items",
+  "required" : [ "askingPrice", "description", "idItems", "idUser", "title" ],
   "type" : "object",
   "properties" : {
-    "id" : {
+    "idItems" : {
       "type" : "integer"
     },
     "title" : {
@@ -734,45 +735,41 @@
     "askingPrice" : {
       "type" : "number"
     },
-    "dateOfPosting" : {
-      "type" : "string"
-    },
     "deliveryType" : {
-      "type" : "string"
-    },
-    "contactInformation" : {
-      "$ref" : "#/components/schemas/Items_contactInformation"
-    }
-  }
-};
-            defs["Items_contactInformation"] = {
-  "type" : "object",
-  "properties" : {
-    "sellerId" : {
-      "type" : "integer"
+      "type" : "string",
+      "description" : "Pick-up or send"
     },
     "address" : {
       "type" : "string"
     },
     "postalCode" : {
-      "type" : "integer"
+      "type" : "number"
     },
     "city" : {
       "type" : "string"
     },
-    "country" : {
-      "type" : "string"
+    "createdAt" : {
+      "type" : "string",
+      "description" : "When the item was created"
+    },
+    "updatedAt" : {
+      "type" : "string",
+      "description" : "When the item was last updated\n"
+    },
+    "idUser" : {
+      "type" : "integer",
+      "description" : "Sellers ID"
     }
   }
 };
             defs["User"] = {
   "title" : "User",
-  "required" : [ "email", "emailVerified", "firstName", "id", "lastName" ],
+  "required" : [ "dateOfBirth", "email", "firstName", "lastName", "password", "userName" ],
   "type" : "object",
   "properties" : {
-    "id" : {
+    "idUser" : {
       "type" : "integer",
-      "description" : "Unique identifier for the given user."
+      "description" : "Auto-increment on DB\n"
     },
     "firstName" : {
       "type" : "string"
@@ -781,28 +778,28 @@
       "type" : "string"
     },
     "email" : {
-      "type" : "string",
-      "format" : "email"
+      "type" : "string"
     },
     "dateOfBirth" : {
-      "type" : "string",
-      "format" : "date",
-      "example" : "1997-10-31"
+      "type" : "string"
     },
     "emailVerified" : {
-      "type" : "boolean",
-      "description" : "Set to true if the user's email has been verified."
-    },
-    "createDate" : {
-      "type" : "string",
-      "description" : "The date that the user was created.",
-      "format" : "date"
+      "type" : "integer",
+      "description" : "0 = false, 1 = true"
     },
     "userName" : {
       "type" : "string"
     },
     "password" : {
       "type" : "string"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "description" : "API creates these on account registration"
+    },
+    "updatedAt" : {
+      "type" : "string",
+      "description" : "API creates these on account registration"
     }
   },
   "x-examples" : { }
@@ -853,12 +850,6 @@
                     </li>
                     <li data-group="Default" data-name="putItems" class="">
                       <a href="#api-Default-putItems">putItems</a>
-                    </li>
-                    <li data-group="Default" data-name="putItemsItemId" class="">
-                      <a href="#api-Default-putItemsItemId">putItemsItemId</a>
-                    </li>
-                    <li data-group="Default" data-name="putUsersUserId" class="">
-                      <a href="#api-Default-putUsersUserId">putUsersUserId</a>
                     </li>
           </ul>
         </nav>
@@ -3701,497 +3692,6 @@ except ApiException as e:
 
                           <h2>Parameters</h2>
 
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-putItemsItemId">
-                      <article id="api-Default-putItemsItemId-0" data-group="User" data-name="putItemsItemId" data-version="0">
-                        <div class="pull-left">
-                          <h1>putItemsItemId</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/items/{itemId}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-putItemsItemId-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-putItemsItemId-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-putItemsItemId-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-putItemsItemId-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-putItemsItemId-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
-"http://localhost:3000/items/{itemId}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-putItemsItemId-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String itemId = itemId_example; // String | 
-        try {
-            apiInstance.putItemsItemId(itemId);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#putItemsItemId");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-putItemsItemId-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String itemId = itemId_example; // String | 
-        try {
-            apiInstance.putItemsItemId(itemId);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#putItemsItemId");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-putItemsItemId-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-putItemsItemId-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *itemId = itemId_example; // 
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-[apiInstance putItemsItemIdWith:itemId
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putItemsItemId-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var AvKysynMiehelt = require('av_kysyn_miehelt');
-
-var api = new AvKysynMiehelt.DefaultApi()
-var itemId = itemId_example; // {{String}} 
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.putItemsItemId(itemId, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-putItemsItemId-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-putItemsItemId-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class putItemsItemIdExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var itemId = itemId_example;  // String | 
-
-            try
-            {
-                apiInstance.putItemsItemId(itemId);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.putItemsItemId: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putItemsItemId-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$itemId = itemId_example; // String | 
-
-try {
-    $api_instance->putItemsItemId($itemId);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->putItemsItemId: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putItemsItemId-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $itemId = itemId_example; # String | 
-
-eval { 
-    $api_instance->putItemsItemId(itemId => $itemId);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->putItemsItemId: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putItemsItemId-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-itemId = itemId_example # String | 
-
-try: 
-    api_instance.put_items_item_id(itemId)
-except ApiException as e:
-    print("Exception when calling DefaultApi->putItemsItemId: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">itemId*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_putItemsItemId_itemId">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 404 - Not Found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-putUsersUserId">
-                      <article id="api-Default-putUsersUserId-0" data-group="User" data-name="putUsersUserId" data-version="0">
-                        <div class="pull-left">
-                          <h1>putUsersUserId</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Update user</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/users/{userId}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-putUsersUserId-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-putUsersUserId-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-putUsersUserId-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-putUsersUserId-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-putUsersUserId-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
-"http://localhost:3000/users/{userId}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-putUsersUserId-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        Integer userId = 56; // Integer | Id of an existing user.
-        try {
-            apiInstance.putUsersUserId(userId);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#putUsersUserId");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-putUsersUserId-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        Integer userId = 56; // Integer | Id of an existing user.
-        try {
-            apiInstance.putUsersUserId(userId);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#putUsersUserId");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-putUsersUserId-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-putUsersUserId-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Integer *userId = 56; // Id of an existing user.
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-[apiInstance putUsersUserIdWith:userId
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putUsersUserId-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var AvKysynMiehelt = require('av_kysyn_miehelt');
-
-var api = new AvKysynMiehelt.DefaultApi()
-var userId = 56; // {{Integer}} Id of an existing user.
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.putUsersUserId(userId, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-putUsersUserId-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-putUsersUserId-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class putUsersUserIdExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var userId = 56;  // Integer | Id of an existing user.
-
-            try
-            {
-                apiInstance.putUsersUserId(userId);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.putUsersUserId: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putUsersUserId-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$userId = 56; // Integer | Id of an existing user.
-
-try {
-    $api_instance->putUsersUserId($userId);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->putUsersUserId: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putUsersUserId-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $userId = 56; # Integer | Id of an existing user.
-
-eval { 
-    $api_instance->putUsersUserId(userId => $userId);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->putUsersUserId: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-putUsersUserId-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-userId = 56 # Integer | Id of an existing user.
-
-try: 
-    api_instance.put_users_user_id(userId)
-except ApiException as e:
-    print("Exception when calling DefaultApi->putUsersUserId: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">userId*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_putUsersUserId_userId">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      Integer
-                                                  </span>
-                                  
-                                                      <div class="inner description">
-                                                          Id of an existing user.
-                                                      </div>
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
 
 
 
