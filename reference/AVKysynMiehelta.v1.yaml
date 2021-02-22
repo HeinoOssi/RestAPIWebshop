@@ -84,13 +84,6 @@ paths:
                   lastName: Baker
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
-    put:
-      summary: ''
-      operationId: put-users-userId
-      responses:
-        '200':
-          description: OK
-      description: Update user
     delete:
       summary: ''
       operationId: delete-users-userId
@@ -218,55 +211,52 @@ paths:
       responses:
         '200':
           description: OK
-    put:
-      summary: ''
-      operationId: put-items-itemId
-      responses:
-        '200':
-          description: OK
-        '404':
-          description: Not Found
 components:
   schemas:
     User:
       title: User
-      type: object
       description: ''
       x-examples: {}
+      type: object
       properties:
-        id:
+        idUser:
           type: integer
-          description: Unique identifier for the given user.
+          description: |
+            Auto-increment on DB
         firstName:
           type: string
         lastName:
           type: string
         email:
           type: string
-          format: email
         dateOfBirth:
           type: string
-          format: date
-          example: '1997-10-31'
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
+        emailVerified:
+          type: integer
+          description: '0 = false, 1 = true'
         userName:
           type: string
         password:
           type: string
+        createdAt:
+          type: string
+          description: API creates these on account registration
+        updatedAt:
+          type: string
+          description: API creates these on account registration
       required:
-        - id
         - firstName
         - lastName
         - email
+        - dateOfBirth
+        - userName
+        - password
     Items:
       title: Items
       type: object
       description: ''
       properties:
-        id:
+        idItems:
           type: integer
         title:
           type: string
@@ -276,20 +266,15 @@ components:
           type: string
         askingPrice:
           type: number
-        dateOfPosting:
-          type: string
         deliveryType:
           type: string
-        contactInformation:
-          type: object
-          properties:
-            sellerId:
-              type: integer
-            address:
-              type: string
-            postalCode:
-              type: integer
-            city:
-              type: string
-            country:
-              type: string
+        address:
+          type: string
+        postalCode:
+          type: number
+        city:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
