@@ -268,6 +268,7 @@ components:
           type: number
         deliveryType:
           type: string
+          description: Pick-up or send
         address:
           type: string
         postalCode:
@@ -276,5 +277,17 @@ components:
           type: string
         createdAt:
           type: string
+          description: When the item was created
         updatedAt:
           type: string
+          description: |
+            When the item was last updated
+        idUser:
+          type: integer
+          description: Sellers ID
+      required:
+        - idItems
+        - title
+        - description
+        - askingPrice
+        - idUser
