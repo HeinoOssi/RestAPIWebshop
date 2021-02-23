@@ -1,4 +1,4 @@
 ## RestAPIWebshop
 
 #### To make this thing work
-Create a localhost database. Tables found on database.txt.
+Create a localhost mysql database. Tables found on database.txt.
