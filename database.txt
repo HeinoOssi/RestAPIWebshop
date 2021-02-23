@@ -1,0 +1,51 @@
+CREATE SCHEMA IF NOT EXISTS `avkmdb` DEFAULT CHARACTER SET utf8 ;
+USE `avkmdb` ;
+
+-- -----------------------------------------------------
+-- Table `avkmdb`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `avkmdb`.`users` ;
+
+CREATE TABLE IF NOT EXISTS `avkmdb`.`users` (
+  `idUser` INT(11) NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(45) NULL DEFAULT NULL,
+  `lastName` VARCHAR(45) NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `dateOfBirth` DATE NULL DEFAULT NULL,
+  `emailVerified` TINYINT(4) NULL DEFAULT NULL,
+  `userName` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `createdAt` DATE NULL DEFAULT NULL,
+  `updatedAt` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`idUser`),
+  UNIQUE INDEX `idUser_UNIQUE` (`idUser` ASC),
+  UNIQUE INDEX `userName` (`userName` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 17
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `avkmdb`.`items`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `avkmdb`.`items` ;
+
+CREATE TABLE IF NOT EXISTS `avkmdb`.`items` (
+  `idItems` INT(11) NOT NULL AUTO_INCREMENT,
+  `idUser` INT(11) NOT NULL,
+  `title` VARCHAR(45) NULL DEFAULT NULL,
+  `description` VARCHAR(45) NULL DEFAULT NULL,
+  `category` VARCHAR(45) NULL DEFAULT NULL,
+  `askingPrice` VARCHAR(45) NULL DEFAULT NULL,
+  `deliveryType` VARCHAR(45) NULL DEFAULT NULL,
+  `address` VARCHAR(45) NULL DEFAULT NULL,
+  `postalCode` INT(11) NULL DEFAULT NULL,
+  `city` VARCHAR(45) NULL DEFAULT NULL,
+  `createdAt` DATE NULL DEFAULT NULL,
+  `updatedAt` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`idItems`, `idUser`),
+  UNIQUE INDEX `idItems_UNIQUE` (`idItems` ASC),
+  INDEX `fk_items_users_idx` (`idUser` ASC),
+  CONSTRAINT `fk_items_users`
+    FOREIGN KEY (`idUser`)
+    REFERENCES `avkmdb`.`users` (`idUser`))
